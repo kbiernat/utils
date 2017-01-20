@@ -4,7 +4,7 @@ function log2syslog
 {
     [ -z "${AT_PROMPT+set}" ] && return 1
     COMMAND=$(fc -ln -0|cut -f 2-)
-    if [ -n "${BASH_COMMAND}" ] && [ "${BASH_COMMAND}" != "AT_PROMPT=t" ]; then
+    if [ -n "${BASH_COMMAND}" ] && [ "${BASH_COMMAND}" != "AT_PROMPT=t" ] && [ "${BASH_COMMAND}" != '[ "$SHLVL" = 1 ]' ]; then
         if [ "${USER}" != "$(logname)" ]; then
             LOGUSER="$(logname)@${USER}"
         fi
