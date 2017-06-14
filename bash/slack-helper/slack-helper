@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source ~/.slackrc
+
+function slacksend {
+    msg=$(echo $1 | sed 's/"/\"/g' | sed "s/'/\'/g" )
+    json="{\"text\": \"$msg\"}"
+    curl -X POST -H 'Content-type: application/json' --data "$json" ${SLACK_URL}
+}
+
